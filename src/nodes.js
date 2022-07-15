@@ -9,7 +9,7 @@ const movieDetailSection = document.querySelector('#movieDetail');
 //lists & containers:
 const searchForm = document.querySelector('#searchForm');
 const trendingMoviesPreviewList = document.querySelector('.trendingPreview-movieList');
-const categoriesPreviewList = document.querySelector('categoriesPreview-list');
+const categoriesPreviewList = document.querySelector('.categoriesPreview-list');
 const movieDetailCategoriesList = document.querySelector('#movieDetail .categories-list');
 const relateMoviesContainer = document.querySelector('.relateMovies-scrollContainer'); 
 
@@ -21,7 +21,7 @@ const headerCategoryTitle = document.querySelector('.header-title--categoryView'
 const searchFormInput = document.querySelector('#searchForm input');
 const searchFormBtn = document.querySelector('#searchBtn');
 
-const trendingBtn = document.querySelector('#trendingPreview-btn');
+const trendingBtn = document.querySelector('.trendingPreview-btn');
 
 const movieDetailTitle = document.querySelector('.movieDetail-title');
 const movieDetailDescription = document.querySelector('.movieDetail-description');
