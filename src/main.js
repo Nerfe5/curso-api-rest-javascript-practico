@@ -9,7 +9,29 @@ const api = axios.create({
     }
 });
 
+//Utils
+function createMovies(movies, container){
 
+    container.innerHTML ='';
+
+    movies.forEach(movie => {
+        const movieContainer = document.createElement('div');
+        movieContainer.classList.add('movie-container');
+
+        const moviePoster = document.createElement('img');
+        moviePoster.classList.add('movie-img');
+        moviePoster.setAttribute('alt', movie.title);
+        moviePoster.setAttribute('src', 'https://image.tmdb.org/t/p/w300/' + movie.poster_path,);
+
+
+        movieContainer.appendChild(moviePoster);
+        container.appendChild(movieContainer);
+    });
+}
+
+
+
+// llamados a la API
 
 async function getTrendingMoviesPreview(){
     const { data } = await api('trending/movie/day');
@@ -52,7 +74,11 @@ async function getCategoriesPreview(){
         const categoryTitle = document.createElement('h3');
         categoryTitle.classList.add('category-title');
         categoryTitle.setAttribute('id', 'id' + category.id);
-        const categoryTitleText = document.createTextNode('category.name');
+        categoryTitle.addEventListener('click', () => {
+            location.hash = `#category=${category.id}-${category.name}`;
+         });
+
+        const categoryTitleText = document.createTextNode(category.name);
 
         categoryTitle.appendChild(categoryTitleText);
         categoryContainer.appendChild(categoryTitle);
@@ -62,5 +88,29 @@ async function getCategoriesPreview(){
     );
 }
 
+async function getMoviesByCategory(id){
+    const { data } = await api('/discover/movie',{
+        params: {
+            with_genres: id,
+    }});
+     const movies = data.results;
+
+    console.log({data, movies});
+
+        genericSection.innerHTML = "";
+   
+        movies.forEach(movie => {
+        const movieContainer = document.createElement('div');
+        movieContainer.classList.add('movie-container');
+
+        const moviePoster = document.createElement('img');
+        moviePoster.classList.add('movie-img');
+        moviePoster.setAttribute('alt', movie.title);
+        moviePoster.setAttribute('src', 'https://image.tmdb.org/t/p/w300/' + movie.poster_path,);
 
 
+        movieContainer.appendChild(moviePoster);
+        genericSection.appendChild(movieContainer);
+    }
+    );
+}
